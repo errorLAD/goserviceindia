@@ -1,4 +1,4 @@
-const dotenv = require("dotenv");
+const dotenv = require("dotenv")
 const express = require("express");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
@@ -6,10 +6,12 @@ const passportConfig = require("./lib/passportConfig");
 const cors = require("cors");
 const fs = require("fs");
 
+
+dotenv.config({path:'./config.env'});
 // MongoDB
-const db = process.env.MONGODB_URL
+const DB = process.env.DATABASE;
 mongoose
-  .connect(db, {
+  .connect(DB, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
     useCreateIndex: true,
@@ -17,6 +19,7 @@ mongoose
   })
   .then((res) => console.log("Connected to DB"))
   .catch((err) => console.log(err));
+
 
 // initialising directories
 if (!fs.existsSync("./public")) {
